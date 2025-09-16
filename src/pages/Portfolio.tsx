@@ -761,19 +761,32 @@ export default function Portfolio() {
                 key={c.title + c.issuer}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ y: -6, rotate: 0.3 }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                className="group relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:border-pink-400/40 hover:shadow-[0_0_0_1px_rgba(255,0,128,0.25)]"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-white" />
+                {/* subtle gradient glow */}
+                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gradient-to-br from-pink-500/25 to-blue-500/25 blur-2xl" />
+
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center">
+                      <Award className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-white">{c.title}</h3>
+                      <p className="text-xs text-white/60">Awarded</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base font-semibold text-white">{c.title}</h3>
-                    <p className="text-sm text-white/70">{c.issuer}</p>
-                  </div>
+
+                  <Badge variant="outline" className="border-white/30 text-white/80">
+                    {c.issuer}
+                  </Badge>
                 </div>
+
+                {/* animated accent underline */}
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-pink-500 to-blue-500 transition-all duration-500 group-hover:w-full" />
               </motion.div>
             ))}
           </div>
