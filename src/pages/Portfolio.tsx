@@ -203,7 +203,7 @@ const experiences: Experience[] = [
     company: "Chronosphere, Burhanpur (Madhya Pradesh)",
     period: "Jul 2025 – Present",
     description:
-      "Completed a 6‑month Technical Internship as Learning Management Engineer; optimized and supported LMS systems."
+      "Completed a 6‑month Technical Internship as Learning Management Engineer; optimized and supported LMS systems; also served as a Full‑Stack Development role intern contributing to frontend and backend web features."
   },
 ];
 
