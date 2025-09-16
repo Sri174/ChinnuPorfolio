@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import clsx from "clsx";
 
 type Particle = {
   x: number;
@@ -121,10 +120,7 @@ export default function Particles({
   return (
     <canvas
       ref={canvasRef}
-      className={clsx(
-        "pointer-events-none fixed inset-0 -z-10 opacity-35",
-        className,
-      )}
+      className={`pointer-events-none fixed inset-0 -z-10 opacity-35 ${className ?? ""}`}
     />
   );
 }
