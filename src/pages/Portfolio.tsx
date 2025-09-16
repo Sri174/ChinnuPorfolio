@@ -23,6 +23,13 @@ import {
   FileDown
 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface Project {
   id: string;
@@ -44,93 +51,93 @@ interface Skill {
 }
 
 const profile = {
-  name: "Alex Johnson",
-  title: "Full-Stack Developer & UI/UX Designer crafting digital experiences that blend creativity with functionality",
-  email: "alex.johnson@email.com",
-  phone: "+1 (555) 123-4567",
-  location: "San Francisco, CA",
+  name: "VEERACHINNU M",
+  title: "AI & Data Science Student • COO & Technical Mentor",
+  email: "veerachinnumanikandan1@gmail.com",
+  phone: "+91 9159573303",
+  location: "India",
   githubUrl: "https://github.com/",
-  linkedinUrl: "https://www.linkedin.com/",
+  linkedinUrl: "https://www.linkedin.com/in/veerachinnu-manikandan-19a75826b/",
   twitterUrl: "https://twitter.com/",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1",
 };
 
 const projects: Project[] = [
   {
-    id: "1",
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include user authentication, product management, shopping cart, and payment processing.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
-    category: "Web Development",
+    id: "p1",
+    title: "Decentralized File Storage",
+    description:
+      "Blockchain-based decentralized file storage ensuring transparency and reliability for secure data access.",
+    image:
+      "https://images.unsplash.com/photo-1639322537504-6427a16b0a28?w=800&h=500&fit=crop",
+    technologies: ["Ethereum", "IPFS", "Web3.js", "React"],
+    category: "Blockchain",
     githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
-    featured: true
+    featured: true,
   },
   {
-    id: "2",
-    title: "AI Chat Application",
-    description: "Real-time chat application powered by AI with natural language processing. Built with modern web technologies and WebSocket connections.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-    technologies: ["React", "TypeScript", "OpenAI API", "Socket.io", "Express"],
+    id: "p2",
+    title: "AI Interior Designer",
+    description:
+      "Web app that generates interior design ideas using generative AI with simple user prompts.",
+    image:
+      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2d95?w=800&h=500&fit=crop",
+    technologies: ["Python", "FastAPI", "React", "OpenAI"],
     category: "AI/ML",
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
-    featured: true
+    featured: true,
   },
   {
-    id: "3",
-    title: "Mobile Fitness Tracker",
-    description: "Cross-platform mobile app for fitness tracking with workout plans, progress monitoring, and social features. Built with React Native.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-    technologies: ["React Native", "Firebase", "Redux", "Expo"],
-    category: "Mobile Development",
-    githubUrl: "https://github.com",
-    featured: false
-  },
-  {
-    id: "4",
-    title: "Data Visualization Dashboard",
-    description: "Interactive dashboard for data visualization and analytics. Features real-time charts, filtering, and export capabilities.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    technologies: ["D3.js", "React", "Python", "FastAPI", "PostgreSQL"],
-    category: "Data Science",
+    id: "p3",
+    title: "Z7i Website Frontend",
+    description:
+      "Responsive, user‑friendly frontend for Z7i website with modern web practices and accessibility.",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    category: "Web Development",
     githubUrl: "https://github.com",
     liveUrl: "https://example.com",
-    featured: true
+    featured: false,
   },
   {
-    id: "5",
-    title: "Blockchain Voting System",
-    description: "Decentralized voting platform built on Ethereum blockchain ensuring transparency and security in digital elections.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-    technologies: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS"],
-    category: "Blockchain",
+    id: "p4",
+    title: "FutureSelf AI",
+    description:
+      "Exploratory model that predicts and visualizes a future look of students using generative techniques.",
+    image:
+      "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=800&h=500&fit=crop",
+    technologies: ["Python", "Computer Vision", "ML"],
+    category: "AI/ML",
     githubUrl: "https://github.com",
-    featured: false
+    featured: false,
   },
   {
-    id: "6",
-    title: "Design System Library",
-    description: "Comprehensive design system and component library for consistent UI/UX across multiple applications.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
-    technologies: ["React", "Storybook", "Figma", "TypeScript", "CSS-in-JS"],
-    category: "Design",
+    id: "p5",
+    title: "Payroll Desktop App",
+    description:
+      "Payroll application built with Python (Tkinter) featuring employee management and report generation.",
+    image:
+      "https://images.unsplash.com/photo-1554224155-3a589877462f?w=800&h=500&fit=crop",
+    technologies: ["Python", "Tkinter"],
+    category: "Software",
     githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
-    featured: false
-  }
+    featured: false,
+  },
 ];
 
 const skills: Skill[] = [
-  { name: "React", level: 95, category: "Frontend", icon: <Code className="w-5 h-5" /> },
-  { name: "TypeScript", level: 90, category: "Frontend", icon: <Code className="w-5 h-5" /> },
-  { name: "Node.js", level: 85, category: "Backend", icon: <Database className="w-5 h-5" /> },
-  { name: "Python", level: 80, category: "Backend", icon: <Database className="w-5 h-5" /> },
+  { name: "Python", level: 85, category: "Backend", icon: <Code className="w-5 h-5" /> },
+  { name: "React", level: 80, category: "Frontend", icon: <Code className="w-5 h-5" /> },
   { name: "UI/UX Design", level: 75, category: "Design", icon: <Palette className="w-5 h-5" /> },
-  { name: "MongoDB", level: 85, category: "Database", icon: <Database className="w-5 h-5" /> },
-  { name: "AWS", level: 70, category: "Cloud", icon: <Globe className="w-5 h-5" /> },
-  { name: "Docker", level: 75, category: "DevOps", icon: <Globe className="w-5 h-5" /> }
+  { name: "Problem Solving", level: 85, category: "Core", icon: <Globe className="w-5 h-5" /> },
+  { name: "Communication", level: 90, category: "Core", icon: <Globe className="w-5 h-5" /> },
+  { name: "Frontend", level: 80, category: "Frontend", icon: <Code className="w-5 h-5" /> },
+  { name: "Debugging", level: 78, category: "Core", icon: <Database className="w-5 h-5" /> },
+  { name: "Tableau", level: 65, category: "Data", icon: <Database className="w-5 h-5" /> },
+  { name: "MS Office", level: 88, category: "Productivity", icon: <Globe className="w-5 h-5" /> },
+  { name: "Management", level: 82, category: "Leadership", icon: <Globe className="w-5 h-5" /> },
 ];
 
 export default function Portfolio() {
@@ -317,9 +324,10 @@ export default function Portfolio() {
             </h2>
             <div className="max-w-4xl mx-auto">
               <p className="text-lg text-white/80 mb-8 leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of experience creating digital solutions 
-                that make a difference. My journey began with a curiosity for how things work, which led me to 
-                explore the intersection of design and technology.
+                Motivated AI & Data Science student with leadership experience as
+                Co‑Founder & COO at a startup and Technical Mentor. Passionate about
+                building usable products, debugging, and collaborating to ship quality
+                software. Eager to apply AI and full‑stack skills to real‑world projects.
               </p>
               <div className="grid md:grid-cols-3 gap-8">
                 <motion.div
@@ -467,6 +475,69 @@ export default function Portfolio() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+              Resume
+            </h2>
+            <p className="text-lg text-white/80">
+              Browse highlights and download the full resume.
+            </p>
+          </motion.div>
+
+          <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-4">
+            <div className="relative">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  <CarouselItem className="basis-full">
+                    <motion.img
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      src="https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1"
+                      alt="Resume page 1"
+                      className="w-full rounded-lg object-contain max-h-[70vh]"
+                    />
+                  </CarouselItem>
+                  <CarouselItem className="basis-full">
+                    <motion.img
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      src="https://harmless-tapir-303.convex.cloud/api/storage/0fb2810a-a7a7-462e-85e5-4e46021a4510"
+                      alt="Resume page 2"
+                      className="w-full rounded-lg object-contain max-h-[70vh]"
+                    />
+                  </CarouselItem>
+                </CarouselContent>
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
+              </Carousel>
+            </div>
+
+            <div className="flex justify-center mt-6">
+              <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex">
+                <Button
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 px-6 rounded-full"
+                >
+                  <FileDown className="w-4 h-4 mr-2" />
+                  Download Resume
+                </Button>
+              </a>
+            </div>
+          </Card>
         </div>
       </section>
 
