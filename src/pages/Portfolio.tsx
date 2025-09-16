@@ -61,6 +61,7 @@ const profile = {
   linkedinUrl: "https://www.linkedin.com/in/veerachinnu-manikandan-19a75826b/",
   twitterUrl: "https://twitter.com/",
   resumeUrl: "https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1",
+  imageUrl: "https://ui-avatars.com/api/?name=VEERACHINNU+M&background=ff0080&color=ffffff&size=200"
 };
 
 const projects: Project[] = [
@@ -259,7 +260,7 @@ export default function Portfolio() {
             >
               <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+                  src={profile.imageUrl}
                   alt="Profile"
                   className="w-28 h-28 rounded-full object-cover"
                 />
