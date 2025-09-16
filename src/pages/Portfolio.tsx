@@ -119,11 +119,11 @@ const projects: Project[] = [
   },
   {
     id: "p4",
-    title: "MVAFutureSelf AI",
+    title: "Futureself AI",
     description:
       "Inspires students by visualizing their future selves in dream professions using generative AI. Dual journeys (ages 5–10 and 11–17) with a personality quiz, camera/upload input, and a personalized, shareable result card.",
     image:
-      "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=800&h=500&fit=crop",
+      "https://harmless-tapir-303.convex.cloud/api/storage/5a1fb435-76d6-4d84-bf09-3049c6347542",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "Genkit", "Stable Diffusion XL"],
     category: "AI/ML",
     liveUrl: "https://mvafutureself.netlify.app/",
