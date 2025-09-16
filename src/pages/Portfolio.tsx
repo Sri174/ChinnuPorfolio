@@ -314,6 +314,26 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
+            <div className="hidden md:flex items-center gap-3">
+              <a
+                href={profile.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="w-9 h-9 rounded-full border border-white/20 hover:border-white/40 bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center"
+              >
+                <Github className="w-5 h-5 text-white" />
+              </a>
+              <a
+                href={profile.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-9 h-9 rounded-full border border-white/20 hover:border-white/40 bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center"
+              >
+                <Linkedin className="w-5 h-5 text-white" />
+              </a>
+            </div>
           </div>
         </div>
       </motion.nav>
