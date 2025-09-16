@@ -99,7 +99,7 @@ const projects: Project[] = [
     description:
       "Web app that generates interior design ideas using generative AI with simple user prompts.",
     image:
-      "https://images.unsplash.com/photo-1505691723518-36a5ac3b2d95?w=800&h=500&fit=crop",
+      "https://i.pinimg.com/1200x/4c/46/ad/4c46adde0b8add716f5b20b4d315d0ac.jpg",
     technologies: ["Python", "FastAPI", "React", "OpenAI"],
     category: "AI/ML",
     githubUrl: "https://github.com/Sri174/Virtual_AI_Interior",
