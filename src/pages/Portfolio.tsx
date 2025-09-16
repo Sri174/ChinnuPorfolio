@@ -226,6 +226,16 @@ export default function Portfolio() {
     message: ""
   });
 
+  const [bgOffset, setBgOffset] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const xNorm = e.clientX / window.innerWidth - 0.5;
+    const yNorm = e.clientY / window.innerHeight - 0.5;
+    const x = Math.max(40, Math.min(60, 50 + xNorm * 8));
+    const y = Math.max(40, Math.min(60, 50 + yNorm * 6));
+    setBgOffset({ x, y });
+  };
+
   const sendContact = useAction(api.contact_actions.sendEmailAndSave);
 
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
@@ -279,7 +289,21 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+    <div
+      className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Robot background with parallax */}
+      <div
+        className="fixed inset-0 -z-20"
+        style={{
+          backgroundImage: 'url("https://i.pinimg.com/736x/c2/e7/5e/c2e75ef38ca2482ca20ba70fc5d8b236.jpg")',
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: `${bgOffset.x}% ${bgOffset.y}%`,
+        }}
+      />
+
       {/* Animated Background Mesh - Enhanced AI Theme */}
       <div className="fixed inset-0">
         {/* Animated gradient base */}
