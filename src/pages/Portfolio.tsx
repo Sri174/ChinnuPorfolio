@@ -281,7 +281,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
       {/* Animated Background Mesh */}
-      <div className="fixed inset-0 opacity-30">
+      <div className="fixed inset-0 opacity-40">
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-500"
           animate={{
@@ -299,6 +299,7 @@ export default function Portfolio() {
 
       {/* New Particle Layer (subtle, behind content) */}
       <Particles className="opacity-20" density={0.04} color="255, 128, 255" linkDistance={100} maxSpeed={0.2} />
+      <Particles className="opacity-15" density={0.03} color="120, 200, 255" linkDistance={110} maxSpeed={0.18} />
 
       {/* Navigation */}
       <motion.nav
@@ -354,7 +355,7 @@ export default function Portfolio() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative">
+      <section id="hero" className="min-h-[85vh] flex items-center justify-center relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -376,6 +377,11 @@ export default function Portfolio() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
               {profile.name}
             </h1>
+            <div className="flex flex-wrap gap-2 justify-center mb-6">
+              <Badge className="bg-cyan-500/20 text-cyan-200 border-cyan-400/30">AI & Data Science</Badge>
+              <Badge className="bg-indigo-500/20 text-indigo-200 border-indigo-400/30">Full‑Stack</Badge>
+              <Badge className="bg-pink-500/20 text-pink-200 border-pink-400/30">Design</Badge>
+            </div>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
               {profile.title}
             </p>
@@ -422,14 +428,14 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 relative">
+      <section id="about" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               About Me
@@ -479,14 +485,14 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-16 relative">
+      <section id="experience" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               Work Experience
@@ -526,7 +532,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 relative">
+      <section id="projects" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading + Filter */}
           <motion.div
@@ -534,7 +540,7 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               Featured Projects
@@ -658,14 +664,14 @@ export default function Portfolio() {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="py-16 relative">
+      <section id="resume" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-10"
+            className="text-center mb-8"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
               Resume
@@ -721,14 +727,14 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-16 relative">
+      <section id="skills" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
               Skills & Technologies
@@ -775,14 +781,14 @@ export default function Portfolio() {
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-16 relative">
+      <section id="certifications" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
               Certifications
@@ -831,7 +837,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 relative">
+      <section id="contact" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
