@@ -947,7 +947,7 @@ export default function Portfolio() {
       <footer className="py-8 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-white/60">
-            © 2024 Alex Johnson. Built with React, TypeScript, and lots of ☕
+            © {new Date().getFullYear()} {profile.name}. Built with React, TypeScript, and lots of ☕
           </p>
         </div>
       </footer>
