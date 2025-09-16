@@ -645,7 +645,7 @@ export default function Portfolio() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Card className="bg-white text-black rounded-3xl shadow-xl border-0 overflow-hidden h-full flex flex-col">
+                <Card className="bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-3xl overflow-hidden h-full flex flex-col">
                   <div className="p-4 pb-0">
                     <div className="overflow-hidden rounded-2xl">
                       <img
@@ -656,9 +656,10 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <CardContent className="p-5 flex flex-col items-center text-center gap-4">
+                  <CardContent className="p-5 flex flex-col items-center text-center gap-3">
                     <h3 className="text-base md:text-lg font-semibold">{project.title}</h3>
-                    <div className="flex flex-wrap gap-3 justify-center">
+                    <p className="text-sm text-white/80 line-clamp-3">{project.description}</p>
+                    <div className="flex flex-wrap gap-3 justify-center pt-1">
                       {project.githubUrl && (
                         <a
                           href={project.githubUrl}
@@ -666,7 +667,7 @@ export default function Portfolio() {
                           rel="noopener noreferrer"
                           className="inline-flex"
                         >
-                          <Button variant="outline" className="rounded-full px-5">
+                          <Button variant="outline" className="rounded-full px-5 border-white/30 text-white hover:bg-white/10">
                             <Github className="w-4 h-4 mr-2" />
                             Code
                           </Button>
@@ -679,7 +680,7 @@ export default function Portfolio() {
                           rel="noopener noreferrer"
                           className="inline-flex"
                         >
-                          <Button variant="outline" className="rounded-full px-5">
+                          <Button variant="outline" className="rounded-full px-5 border-white/30 text-white hover:bg-white/10">
                             <ExternalLink className="w-4 h-4 mr-2" />
                             Live Demo
                           </Button>
@@ -721,8 +722,8 @@ export default function Portfolio() {
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
-                      src="https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1"
-                      alt="Resume page 1"
+                      src="https://harmless-tapir-303.convex.cloud/api/storage/0fb2810a-a7a7-462e-85e5-4e46021a4510"
+                      alt="Resume page 2"
                       className="w-full rounded-lg object-contain max-h-[70vh]"
                     />
                   </CarouselItem>
@@ -731,8 +732,8 @@ export default function Portfolio() {
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
-                      src="https://harmless-tapir-303.convex.cloud/api/storage/0fb2810a-a7a7-462e-85e5-4e46021a4510"
-                      alt="Resume page 2"
+                      src="https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1"
+                      alt="Resume page 1"
                       className="w-full rounded-lg object-contain max-h-[70vh]"
                     />
                   </CarouselItem>
