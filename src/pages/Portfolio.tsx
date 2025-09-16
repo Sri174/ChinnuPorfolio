@@ -344,8 +344,8 @@ export default function Portfolio() {
       </div>
 
       {/* AI Particles layers */}
-      <Particles className="opacity-25" density={0.05} color="180, 220, 255" linkDistance={110} maxSpeed={0.22} />
-      <Particles className="opacity-2 0" density={0.035} color="236, 72, 153" linkDistance={100} maxSpeed={0.18} />
+      <Particles className="opacity-20" density={0.035} color="236, 72, 153" linkDistance={100} maxSpeed={0.18} />
+      <Particles className="opacity-20" density={0.035} color="236, 72, 153" linkDistance={100} maxSpeed={0.18} />
 
       {/* Navigation */}
       <motion.nav
