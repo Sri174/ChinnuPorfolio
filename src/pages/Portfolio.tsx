@@ -281,7 +281,7 @@ export default function Portfolio() {
       </div>
 
       {/* New Particle Layer (subtle, behind content) */}
-      <Particles className="opacity-30" />
+      <Particles className="opacity-20" density={0.04} color="255, 128, 255" linkDistance={100} maxSpeed={0.2} />
 
       {/* Navigation */}
       <motion.nav
@@ -385,7 +385,7 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 relative">
+      <section id="about" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -442,7 +442,7 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 relative">
+      <section id="experience" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -489,7 +489,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 relative">
+      <section id="projects" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading + Filter */}
           <motion.div
@@ -546,7 +546,7 @@ export default function Portfolio() {
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -573,7 +573,7 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <CardContent className="p-6 flex flex-col h-full">
+                  <CardContent className="p-5 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
                     <p className="text-white/70 mb-4 line-clamp-3">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -621,7 +621,7 @@ export default function Portfolio() {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="py-20 relative">
+      <section id="resume" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -684,7 +684,7 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 relative">
+      <section id="skills" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -738,7 +738,7 @@ export default function Portfolio() {
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-20 relative">
+      <section id="certifications" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -781,7 +781,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 relative">
+      <section id="contact" className="py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -805,8 +805,8 @@ export default function Portfolio() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-8">
-                <form onSubmit={handleContactSubmit} className="space-y-6">
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
+                <form onSubmit={handleContactSubmit} className="space-y-5">
                   <div>
                     <Input
                       placeholder="Your Name"
