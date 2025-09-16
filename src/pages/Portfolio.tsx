@@ -57,7 +57,7 @@ const profile = {
   email: "veerachinnumanikandan1@gmail.com",
   phone: "+91 9159573303",
   location: "India",
-  githubUrl: "https://github.com/",
+  githubUrl: "https://github.com/Sri174",
   linkedinUrl: "https://www.linkedin.com/in/veerachinnu-manikandan-19a75826b/",
   twitterUrl: "https://twitter.com/",
   resumeUrl: "https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1",
@@ -463,16 +463,30 @@ export default function Portfolio() {
                     </div>
                     <div className="flex gap-2">
                       {project.githubUrl && (
-                        <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                          <Github className="w-4 h-4 mr-2" />
-                          Code
-                        </Button>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex"
+                        >
+                          <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                            <Github className="w-4 h-4 mr-2" />
+                            Code
+                          </Button>
+                        </a>
                       )}
                       {project.liveUrl && (
-                        <Button size="sm" className="bg-gradient-to-r from-pink-500 to-blue-500">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Live Demo
-                        </Button>
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex"
+                        >
+                          <Button size="sm" className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600">
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Live Demo
+                          </Button>
+                        </a>
                       )}
                     </div>
                   </CardContent>
