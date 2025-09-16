@@ -19,7 +19,8 @@ import {
   Globe,
   ChevronDown,
   Filter,
-  X
+  X,
+  FileDown
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -41,6 +42,18 @@ interface Skill {
   category: string;
   icon: React.ReactNode;
 }
+
+const profile = {
+  name: "Alex Johnson",
+  title: "Full-Stack Developer & UI/UX Designer crafting digital experiences that blend creativity with functionality",
+  email: "alex.johnson@email.com",
+  phone: "+1 (555) 123-4567",
+  location: "San Francisco, CA",
+  githubUrl: "https://github.com/",
+  linkedinUrl: "https://www.linkedin.com/",
+  twitterUrl: "https://twitter.com/",
+  resumeUrl: "/resume.pdf",
+};
 
 const projects: Project[] = [
   {
@@ -242,10 +255,10 @@ export default function Portfolio() {
               </div>
             </motion.div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Alex Johnson
+              {profile.name}
             </h1>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
-              Full-Stack Developer & UI/UX Designer crafting digital experiences that blend creativity with functionality
+              {profile.title}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -261,6 +274,22 @@ export default function Portfolio() {
               >
                 Get In Touch
               </Button>
+              {profile.resumeUrl && (
+                <a
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex"
+                >
+                  <Button
+                    variant="outline"
+                    className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-full"
+                  >
+                    <FileDown className="w-4 h-4 mr-2" />
+                    Download Resume
+                  </Button>
+                </a>
+              )}
             </div>
           </motion.div>
         </div>
@@ -573,15 +602,15 @@ export default function Portfolio() {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <Mail className="w-6 h-6 text-pink-400 mr-4" />
-                    <span className="text-white/80">alex.johnson@email.com</span>
+                    <span className="text-white/80">{profile.email}</span>
                   </div>
                   <div className="flex items-center">
                     <Phone className="w-6 h-6 text-pink-400 mr-4" />
-                    <span className="text-white/80">+1 (555) 123-4567</span>
+                    <span className="text-white/80">{profile.phone}</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-6 h-6 text-pink-400 mr-4" />
-                    <span className="text-white/80">San Francisco, CA</span>
+                    <span className="text-white/80">{profile.location}</span>
                   </div>
                 </div>
               </div>
@@ -591,21 +620,27 @@ export default function Portfolio() {
                 <div className="flex space-x-4">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
-                    href="#"
+                    href={profile.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
                   >
                     <Github className="w-6 h-6 text-white" />
                   </motion.a>
                   <motion.a
                     whileHover={{ scale: 1.1 }}
-                    href="#"
+                    href={profile.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
                   >
                     <Linkedin className="w-6 h-6 text-white" />
                   </motion.a>
                   <motion.a
                     whileHover={{ scale: 1.1 }}
-                    href="#"
+                    href={profile.twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-colors"
                   >
                     <Twitter className="w-6 h-6 text-white" />
