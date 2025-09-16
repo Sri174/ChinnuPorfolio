@@ -147,7 +147,7 @@ const projects: Project[] = [
     description:
       "A complete report generation system for Learning Management Systems (LMS) that ingests Excel files, parses them into SQLite, applies business rules, and outputs payroll-ready analytics. Features include automated calculations, attendance summaries, detailed month-wise breakdowns, and CSV exports. Built with a Streamlit frontend for an intuitive experience.",
     image:
-      "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=800&h=500&fit=crop",
+      "https://harmless-tapir-303.convex.cloud/api/storage/3c9bea19-6a57-4f75-aa2d-57b52406294f",
     technologies: [
       "Python",
       "Streamlit",
