@@ -34,10 +34,17 @@ const schema = defineSchema(
 
     // add other tables here
 
-    // tableName: defineTable({
-    //   ...
-    //   // table fields
-    // }).index("by_field", ["field"])
+    // Contact messages submitted via the portfolio form
+    contact_messages: defineTable({
+      name: v.string(),
+      email: v.string(),
+      message: v.string(),
+      sentAt: v.number(),
+      status: v.string(), // "sent" | "failed"
+      providerMessageId: v.optional(v.string()),
+      error: v.optional(v.string()),
+    }).index("by_email", ["email"]),
+
   },
   {
     schemaValidation: false,

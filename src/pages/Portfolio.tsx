@@ -33,6 +33,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Particles from "@/components/Particles.tsx";
+import { api } from "@/convex/_generated/api";
+import { useAction } from "convex/react";
 
 interface Project {
   id: string;
@@ -224,6 +226,8 @@ export default function Portfolio() {
     message: ""
   });
 
+  const sendContact = useAction(api.contact_actions.sendEmailAndSave);
+
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
   const filteredProjects = selectedCategory === "All" 
     ? projects 
@@ -257,10 +261,21 @@ export default function Portfolio() {
     }
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent successfully! I'll get back to you soon.");
-    setContactForm({ name: "", email: "", message: "" });
+    try {
+      await sendContact({
+        name: contactForm.name,
+        email: contactForm.email,
+        message: contactForm.message,
+      });
+      toast.success("Message sent! I'll get back to you soon.");
+      setContactForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Failed to send message. Please try again."
+      );
+    }
   };
 
   return (
