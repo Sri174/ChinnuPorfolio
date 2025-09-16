@@ -483,6 +483,7 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section id="projects" className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading + Filter */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -513,22 +514,24 @@ export default function Portfolio() {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-full mt-2 left-0 right-0 bg-black/80 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50 w-56 bg-black/80 backdrop-blur-sm rounded-xl border border-white/20 overflow-hidden shadow-lg"
                   >
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => {
-                          setSelectedCategory(category);
-                          setIsFilterOpen(false);
-                        }}
-                        className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
-                          selectedCategory === category ? "bg-white/20 text-pink-400" : "text-white"
-                        }`}
-                      >
-                        {category}
-                      </button>
-                    ))}
+                    <div className="max-h-64 overflow-auto">
+                      {categories.map((category) => (
+                        <button
+                          key={category}
+                          onClick={() => {
+                            setSelectedCategory(category);
+                            setIsFilterOpen(false);
+                          }}
+                          className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
+                            selectedCategory === category ? "bg-white/20 text-pink-400" : "text-white"
+                          }`}
+                        >
+                          {category}
+                        </button>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </div>
@@ -544,14 +547,15 @@ export default function Portfolio() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className={`group ${project.featured ? "lg:col-span-2" : ""}`}
+                className="group"
               >
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 overflow-hidden h-full">
-                  <div className="relative overflow-hidden">
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 overflow-hidden h-full flex flex-col">
+                  {/* Image with uniform aspect ratio */}
+                  <div className="relative aspect-[16/9] overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute top-4 right-4">
@@ -560,7 +564,8 @@ export default function Portfolio() {
                       </Badge>
                     </div>
                   </div>
-                  <CardContent className="p-6">
+
+                  <CardContent className="p-6 flex flex-col h-full">
                     <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
                     <p className="text-white/70 mb-4 line-clamp-3">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -570,7 +575,8 @@ export default function Portfolio() {
                         </Badge>
                       ))}
                     </div>
-                    <div className="flex gap-2">
+                    {/* Actions pinned to bottom for consistent height */}
+                    <div className="flex gap-2 mt-auto pt-2">
                       {project.githubUrl && (
                         <a
                           href={project.githubUrl}
