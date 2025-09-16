@@ -79,16 +79,16 @@ const projects: Project[] = [
   },
   {
     id: "p2",
-    title: "AI Interior Designer",
+    title: "Virtual AI Interior",
     description:
       "Web app that generates interior design ideas using generative AI with simple user prompts.",
     image:
       "https://images.unsplash.com/photo-1505691723518-36a5ac3b2d95?w=800&h=500&fit=crop",
     technologies: ["Python", "FastAPI", "React", "OpenAI"],
     category: "AI/ML",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/Sri174/Virtual_AI_Interior",
     liveUrl: "https://example.com",
-    featured: true,
+    featured: false,
   },
   {
     id: "p3",
@@ -125,6 +125,30 @@ const projects: Project[] = [
     technologies: ["Python", "Tkinter"],
     category: "Software",
     githubUrl: "https://github.com",
+    featured: false,
+  },
+  {
+    id: "p6",
+    title: "LMS Report Generator",
+    description:
+      "Python-based tool that compiles and generates comprehensive LMS reports with charts and summaries.",
+    image:
+      "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=800&h=500&fit=crop",
+    technologies: ["Python", "Pandas", "Matplotlib"],
+    category: "Software",
+    githubUrl: "https://github.com/Sri174/LMS_Report_Generator",
+    featured: false,
+  },
+  {
+    id: "p7",
+    title: "Dreamscape Room Builder AI (Frontend)",
+    description:
+      "Interactive frontend for an AI-powered room builder that visualizes design variations and layouts.",
+    image:
+      "https://images.unsplash.com/photo-1496302662116-35cc4f36df92?w=800&h=500&fit=crop",
+    technologies: ["TypeScript", "React", "Tailwind CSS"],
+    category: "Web Development",
+    githubUrl: "https://github.com/Sri174/dreamscape-room-builder-ai",
     featured: false,
   },
 ];
