@@ -145,12 +145,19 @@ const projects: Project[] = [
     id: "p6",
     title: "LMS Report Generator",
     description:
-      "Python-based tool that compiles and generates comprehensive LMS reports with charts and summaries.",
+      "A complete report generation system for Learning Management Systems (LMS) that ingests Excel files, parses them into SQLite, applies business rules, and outputs payroll-ready analytics. Features include automated calculations, attendance summaries, detailed month-wise breakdowns, and CSV exports. Built with a Streamlit frontend for an intuitive experience.",
     image:
       "https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=800&h=500&fit=crop",
-    technologies: ["Python", "Pandas", "Matplotlib"],
+    technologies: [
+      "Python",
+      "Streamlit",
+      "SQLite",
+      "Pandas",
+      "Openpyxl",
+      "XlsxWriter"
+    ],
     category: "Software",
-    githubUrl: "https://github.com/Sri174/LMS_Report_Generator",
+    liveUrl: "https://lmsreportgenerator.streamlit.app/",
     featured: false,
   },
   {
