@@ -20,7 +20,9 @@ import {
   ChevronDown,
   Filter,
   X,
-  FileDown
+  FileDown,
+  Briefcase,
+  Award
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -49,6 +51,18 @@ interface Skill {
   level: number;
   category: string;
   icon: React.ReactNode;
+}
+
+interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+interface Certification {
+  title: string;
+  issuer: string;
 }
 
 const profile = {
@@ -166,6 +180,30 @@ const skills: Skill[] = [
   { name: "Management", level: 82, category: "Leadership", icon: <Globe className="w-5 h-5" /> },
 ];
 
+const experiences: Experience[] = [
+  {
+    role: "Chief Operating Officer",
+    company: "Skill Satron Technologies Pvt. Ltd.",
+    period: "Jun 2025 – Present",
+    description:
+      "Co‑Founder leading operations and UI development; launched AI‑based products and drove delivery."
+  },
+  {
+    role: "Technical Mentor",
+    company: "Chronosphere, Burhanpur (Madhya Pradesh)",
+    period: "Jul 2025 – Present",
+    description:
+      "Completed a 6‑month Technical Internship as Learning Management Engineer; optimized and supported LMS systems."
+  },
+];
+
+const certifications: Certification[] = [
+  { title: "Generative AI", issuer: "Microsoft" },
+  { title: "Oracle Cloud Infrastructure Foundations", issuer: "Oracle" },
+  { title: "Data Analyst (RSDCA)", issuer: "RSDCA" },
+  { title: "Prompt Design in Vertex AI (Badge)", issuer: "Google Cloud" },
+];
+
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("hero");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -183,7 +221,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "about", "projects", "skills", "contact"];
+      const sections = ["hero", "about", "experience", "projects", "resume", "skills", "certifications", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -252,7 +290,7 @@ export default function Portfolio() {
               Portfolio
             </motion.div>
             <div className="hidden md:flex space-x-8">
-              {["hero", "about", "projects", "skills", "contact"].map((section) => (
+              {["hero", "about", "experience", "projects", "resume", "skills", "certifications", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -392,6 +430,53 @@ export default function Portfolio() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+              Work Experience
+            </h2>
+            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+              Roles I've held and what I worked on.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {experiences.map((exp, idx) => (
+              <motion.div
+                key={exp.role + exp.company}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center">
+                      <Briefcase className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">{exp.role}</h3>
+                      <p className="text-white/70">{exp.company}</p>
+                    </div>
+                  </div>
+                  <span className="text-sm text-white/60">{exp.period}</span>
+                </div>
+                <p className="text-white/80 mt-4">{exp.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -630,6 +715,49 @@ export default function Portfolio() {
                       transition={{ duration: 1, delay: index * 0.1 }}
                       viewport={{ once: true }}
                     />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section id="certifications" className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+              Certifications
+            </h2>
+            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+              Recognitions and courses I've completed.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((c, idx) => (
+              <motion.div
+                key={c.title + c.issuer}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                viewport={{ once: true }}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center">
+                    <Award className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-white">{c.title}</h3>
+                    <p className="text-sm text-white/70">{c.issuer}</p>
                   </div>
                 </div>
               </motion.div>
