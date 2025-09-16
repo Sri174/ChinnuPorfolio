@@ -280,26 +280,48 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-      {/* Animated Background Mesh */}
-      <div className="fixed inset-0 opacity-40">
+      {/* Animated Background Mesh - Enhanced AI Theme */}
+      <div className="fixed inset-0">
+        {/* Animated gradient base */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-500"
+          className="absolute inset-0 opacity-45"
           animate={{
             background: [
-              "linear-gradient(45deg, #ff0080, #0080ff, #00ff80)",
-              "linear-gradient(135deg, #00ff80, #ff0080, #0080ff)",
-              "linear-gradient(225deg, #0080ff, #00ff80, #ff0080)",
-              "linear-gradient(315deg, #ff0080, #0080ff, #00ff80)"
-            ]
+              "linear-gradient(45deg, #06b6d4, #8b5cf6, #ec4899)",
+              "linear-gradient(135deg, #22d3ee, #a78bfa, #f472b6)",
+              "linear-gradient(225deg, #67e8f9, #818cf8, #fb7185)",
+              "linear-gradient(315deg, #06b6d4, #8b5cf6, #ec4899)",
+            ],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
         />
+        {/* Soft blur for glass-morphism depth */}
         <div className="absolute inset-0 backdrop-blur-3xl" />
+
+        {/* Subtle neon grid overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-25 mix-blend-screen"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(168,85,247,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px)",
+            backgroundSize: "60px 60px, 60px 60px",
+            backgroundPosition: "0 0, 0 0",
+          }}
+        />
+
+        {/* Radial neural glow hotspots */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-35"
+          style={{
+            backgroundImage:
+              "radial-gradient(600px 300px at 10% 20%, rgba(34,211,238,0.25), transparent 60%), radial-gradient(500px 250px at 80% 30%, rgba(168,85,247,0.25), transparent 60%), radial-gradient(700px 350px at 30% 80%, rgba(236,72,153,0.22), transparent 60%)",
+          }}
+        />
       </div>
 
-      {/* New Particle Layer (subtle, behind content) */}
-      <Particles className="opacity-20" density={0.04} color="255, 128, 255" linkDistance={100} maxSpeed={0.2} />
-      <Particles className="opacity-15" density={0.03} color="120, 200, 255" linkDistance={110} maxSpeed={0.18} />
+      {/* AI Particles layers */}
+      <Particles className="opacity-25" density={0.05} color="180, 220, 255" linkDistance={110} maxSpeed={0.22} />
+      <Particles className="opacity-2 0" density={0.035} color="236, 72, 153" linkDistance={100} maxSpeed={0.18} />
 
       {/* Navigation */}
       <motion.nav
