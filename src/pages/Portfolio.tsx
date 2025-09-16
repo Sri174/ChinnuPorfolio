@@ -268,7 +268,7 @@ export default function Portfolio() {
       {/* Animated Background Mesh */}
       <div className="fixed inset-0 opacity-30">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"
+          className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-500"
           animate={{
             background: [
               "linear-gradient(45deg, #ff0080, #0080ff, #00ff80)",
@@ -295,7 +295,7 @@ export default function Portfolio() {
           <div className="flex justify-between items-center py-4">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent"
+              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent"
             >
               Portfolio
             </motion.div>
@@ -347,7 +347,7 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 p-1"
+              className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 p-1"
               whileHover={{ scale: 1.1 }}
             >
               <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
@@ -358,7 +358,7 @@ export default function Portfolio() {
                 />
               </div>
             </motion.div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
               {profile.name}
             </h1>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
@@ -367,7 +367,7 @@ export default function Portfolio() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 onClick={() => scrollToSection("projects")}
-                className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white px-8 py-3 rounded-full"
+                className="bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600 text-white px-8 py-3 rounded-full"
               >
                 View My Work
               </Button>
@@ -416,7 +416,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               About Me
             </h2>
             <div className="max-w-4xl mx-auto">
@@ -431,7 +431,7 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
                 >
-                  <Code className="w-12 h-12 text-pink-400 mb-4 mx-auto" />
+                  <Code className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
                   <h3 className="text-xl font-semibold text-white mb-2">Development</h3>
                   <p className="text-white/70">
                     Building scalable applications with modern technologies and best practices.
@@ -441,7 +441,7 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
                 >
-                  <Palette className="w-12 h-12 text-purple-400 mb-4 mx-auto" />
+                  <Palette className="w-12 h-12 text-sky-400 mb-4 mx-auto" />
                   <h3 className="text-xl font-semibold text-white mb-2">Design</h3>
                   <p className="text-white/70">
                     Creating intuitive user experiences with attention to detail and aesthetics.
@@ -451,7 +451,7 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
                 >
-                  <Globe className="w-12 h-12 text-blue-400 mb-4 mx-auto" />
+                  <Globe className="w-12 h-12 text-indigo-400 mb-4 mx-auto" />
                   <h3 className="text-xl font-semibold text-white mb-2">Innovation</h3>
                   <p className="text-white/70">
                     Staying ahead of trends and implementing cutting-edge solutions.
@@ -473,7 +473,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               Work Experience
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -493,7 +493,7 @@ export default function Portfolio() {
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 flex items-center justify-center">
                       <Briefcase className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -521,7 +521,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               Featured Projects
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -589,7 +589,7 @@ export default function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-pink-500/80 text-white">
+                      <Badge className="bg-cyan-500/80 text-white">
                         {project.category}
                       </Badge>
                     </div>
@@ -627,7 +627,7 @@ export default function Portfolio() {
                           rel="noopener noreferrer"
                           className="inline-flex"
                         >
-                          <Button size="sm" className="bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600">
+                          <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600">
                             <ExternalLink className="w-4 h-4 mr-2" />
                             Live Demo
                           </Button>
@@ -786,10 +786,10 @@ export default function Portfolio() {
                 whileHover={{ y: -6, rotate: 0.3 }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:border-pink-400/40 hover:shadow-[0_0_0_1px_rgba(255,0,128,0.25)]"
+                className="group relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_0_1px_rgba(34,197,235,0.25)]"
               >
                 {/* subtle gradient glow */}
-                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gradient-to-br from-pink-500/25 to-blue-500/25 blur-2xl" />
+                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gradient-to-br from-cyan-500/25 to-indigo-500/25 blur-2xl" />
 
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -808,7 +808,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* animated accent underline */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-pink-500 to-blue-500 transition-all duration-500 group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-cyan-500 to-indigo-500 transition-all duration-500 group-hover:w-full" />
               </motion.div>
             ))}
           </div>
@@ -873,7 +873,7 @@ export default function Portfolio() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-pink-500 to-blue-500 hover:from-pink-600 hover:to-blue-600 text-white py-3"
+                    className="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600 text-white py-3"
                   >
                     Send Message
                   </Button>
@@ -892,15 +892,15 @@ export default function Portfolio() {
                 <h3 className="text-2xl font-semibold text-white mb-6">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <Mail className="w-6 h-6 text-pink-400 mr-4" />
+                    <Mail className="w-6 h-6 text-cyan-400 mr-4" />
                     <span className="text-white/80">{profile.email}</span>
                   </div>
                   <div className="flex items-center">
-                    <Phone className="w-6 h-6 text-pink-400 mr-4" />
+                    <Phone className="w-6 h-6 text-cyan-400 mr-4" />
                     <span className="text-white/80">{profile.phone}</span>
                   </div>
                   <div className="flex items-center">
-                    <MapPin className="w-6 h-6 text-pink-400 mr-4" />
+                    <MapPin className="w-6 h-6 text-cyan-400 mr-4" />
                     <span className="text-white/80">{profile.location}</span>
                   </div>
                 </div>
