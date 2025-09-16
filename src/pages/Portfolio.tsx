@@ -643,37 +643,22 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
                 className="group"
               >
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20 overflow-hidden h-full flex flex-col">
-                  {/* Image with slightly taller uniform aspect ratio */}
-                  <div className="relative aspect-[16/14] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-cyan-500/80 text-white">
-                        {project.category}
-                      </Badge>
+                <Card className="bg-white text-black rounded-3xl shadow-xl border-0 overflow-hidden h-full flex flex-col">
+                  <div className="p-4 pb-0">
+                    <div className="overflow-hidden rounded-2xl">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
                   </div>
 
-                  <CardContent className="p-5 flex flex-col h-full">
-                    <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                    <p className="text-white/70 mb-4 line-clamp-3">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="border-white/30 text-white/80">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    {/* Actions pinned to bottom for consistent height */}
-                    <div className="flex gap-2 mt-auto pt-2">
+                  <CardContent className="p-5 flex flex-col items-center text-center gap-4">
+                    <h3 className="text-base md:text-lg font-semibold">{project.title}</h3>
+                    <div className="flex flex-wrap gap-3 justify-center">
                       {project.githubUrl && (
                         <a
                           href={project.githubUrl}
@@ -681,7 +666,7 @@ export default function Portfolio() {
                           rel="noopener noreferrer"
                           className="inline-flex"
                         >
-                          <Button size="sm" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                          <Button variant="outline" className="rounded-full px-5">
                             <Github className="w-4 h-4 mr-2" />
                             Code
                           </Button>
@@ -694,7 +679,7 @@ export default function Portfolio() {
                           rel="noopener noreferrer"
                           className="inline-flex"
                         >
-                          <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600">
+                          <Button variant="outline" className="rounded-full px-5">
                             <ExternalLink className="w-4 h-4 mr-2" />
                             Live Demo
                           </Button>
