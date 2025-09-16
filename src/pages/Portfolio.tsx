@@ -210,6 +210,8 @@ const certifications: Certification[] = [
   { title: "Oracle Cloud Infrastructure Foundations", issuer: "Oracle" },
   { title: "Data Analyst (RSDCA)", issuer: "RSDCA" },
   { title: "Prompt Design in Vertex AI (Badge)", issuer: "Google Cloud" },
+  { title: "Journey to Cloud: Envisioning Your Solution", issuer: "IBM SkillBuild" },
+  { title: "Career Essentials in Generative AI", issuer: "Microsoft & LinkedIn" },
 ];
 
 export default function Portfolio() {
