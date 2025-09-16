@@ -119,14 +119,14 @@ const projects: Project[] = [
   },
   {
     id: "p4",
-    title: "FutureSelf AI",
+    title: "MVAFutureSelf AI",
     description:
-      "Exploratory model that predicts and visualizes a future look of students using generative techniques.",
+      "Inspires students by visualizing their future selves in dream professions using generative AI. Dual journeys (ages 5–10 and 11–17) with a personality quiz, camera/upload input, and a personalized, shareable result card.",
     image:
       "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=800&h=500&fit=crop",
-    technologies: ["Python", "Computer Vision", "ML"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "Genkit", "Stable Diffusion XL"],
     category: "AI/ML",
-    githubUrl: "https://github.com",
+    liveUrl: "https://mvafutureself.netlify.app/",
     featured: false,
   },
   {
