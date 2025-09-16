@@ -42,7 +42,7 @@ export const sendEmailAndSave = action({
       `;
 
       const payload = {
-        from: "Gradient Portfolio <notifications@yourdomain.dev>",
+        from: "Gradient Portfolio <onboarding@resend.dev>", // use Resend's verified sender for reliable delivery
         to: ["veerachinnumanikandan1@gmail.com"],
         subject: `New contact from ${name}`,
         html,
