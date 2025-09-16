@@ -114,7 +114,7 @@ const projects: Project[] = [
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     category: "Web Development",
     githubUrl: "https://github.com",
-    liveUrl: "https://example.com",
+    liveUrl: "https://z7i.in/",
     featured: false,
   },
   {
@@ -170,6 +170,7 @@ const projects: Project[] = [
     technologies: ["TypeScript", "React", "Tailwind CSS"],
     category: "Web Development",
     githubUrl: "https://github.com/Sri174/dreamscape-room-builder-ai",
+    liveUrl: "https://dreamscape-room-builder-ai-rn7y.vercel.app/",
     featured: false,
   },
 ];
