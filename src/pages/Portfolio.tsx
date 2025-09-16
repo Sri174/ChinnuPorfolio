@@ -558,8 +558,8 @@ export default function Portfolio() {
                 className="group"
               >
                 <Card className="bg-white/10 backdrop-blur-sm border-white/20 overflow-hidden h-full flex flex-col">
-                  {/* Image with uniform aspect ratio */}
-                  <div className="relative aspect-[16/9] overflow-hidden">
+                  {/* Image with slightly taller uniform aspect ratio */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
