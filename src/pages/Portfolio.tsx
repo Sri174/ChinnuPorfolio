@@ -166,7 +166,7 @@ const projects: Project[] = [
     description:
       "Interactive frontend for an AI-powered room builder that visualizes design variations and layouts.",
     image:
-      "https://images.unsplash.com/photo-1496302662116-35cc4f36df92?w=800&h=500&fit=crop",
+      "https://harmless-tapir-303.convex.cloud/api/storage/92725131-7d5b-4667-b5e1-0eb26de107ac",
     technologies: ["TypeScript", "React", "Tailwind CSS"],
     category: "Web Development",
     githubUrl: "https://github.com/Sri174/dreamscape-room-builder-ai",
