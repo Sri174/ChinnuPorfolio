@@ -137,7 +137,7 @@ const projects: Project[] = [
     description:
       "Payroll application built with Python (Tkinter) featuring employee management and report generation.",
     image:
-      "https://images.unsplash.com/photo-1554224155-3a589877462f?w=800&h=500&fit=crop",
+      "https://harmless-tapir-303.convex.cloud/api/storage/1ada4d08-cc99-4777-a0de-0ef7995440c6",
     technologies: ["Python", "Tkinter"],
     category: "Software",
     githubUrl: "https://github.com",
