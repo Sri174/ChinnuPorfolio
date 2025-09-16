@@ -30,6 +30,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Particles from "@/components/Particles.tsx";
 
 interface Project {
   id: string;
@@ -207,6 +208,9 @@ export default function Portfolio() {
         />
         <div className="absolute inset-0 backdrop-blur-3xl" />
       </div>
+
+      {/* New Particle Layer (subtle, behind content) */}
+      <Particles className="opacity-30" />
 
       {/* Navigation */}
       <motion.nav
