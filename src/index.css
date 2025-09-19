@@ -3,7 +3,6 @@
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
 
-/* DO NOT CHANGE */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -42,95 +41,95 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Gradient Mesh Theme Colors - Modern Cyan/Indigo */
+/* Gradient Mesh Theme Colors - Elegant Emerald */
 :root {
-  /* modern, elegant dark base */
   --radius: 1rem;
-  --background: oklch(0.1 0.03 255);
+  /* base */
+  --background: #0F2027;
   --foreground: oklch(0.98 0.02 260);
 
-  --card: oklch(0.12 0.03 255 / 0.85);
-  --card-foreground: oklch(0.98 0.02 260);
-  --popover: oklch(0.12 0.03 255 / 0.92);
-  --popover-foreground: oklch(0.98 0.02 260);
+  --card: color-mix(in oklab, #0F2027 85%, white 15% / 0.0);
+  --card-foreground: var(--foreground);
+  --popover: color-mix(in oklab, #0F2027 90%, white 10% / 0.0);
+  --popover-foreground: var(--foreground);
 
-  /* cyan → indigo accents */
-  --primary: oklch(0.78 0.18 215);
-  --primary-foreground: oklch(0.1 0.03 255);
+  /* emerald/teal accents */
+  --primary: #2C5364; /* deep teal */
+  --primary-foreground: #0F2027;
 
-  --secondary: oklch(0.18 0.03 255);
-  --secondary-foreground: oklch(0.96 0.02 260);
+  --secondary: #16343D; /* darker teal */
+  --secondary-foreground: #E7FFFB;
 
-  --muted: oklch(0.16 0.03 255);
-  --muted-foreground: oklch(0.72 0.04 255);
+  --muted: #11272E;
+  --muted-foreground: #88C9C0;
 
-  --accent: oklch(0.22 0.05 265);
-  --accent-foreground: oklch(0.98 0.02 260);
+  --accent: #14FFEC; /* aqua */
+  --accent-foreground: #052024;
 
-  --destructive: oklch(0.67 0.22 25);
+  --destructive: #A83D3D;
 
-  --border: oklch(0.25 0.02 255 / 0.35);
-  --input: oklch(0.18 0.03 255 / 0.5);
-  --ring: oklch(0.78 0.18 215);
+  --border: #2a4650; /* subtle teal border */
+  --input: #12303880;
+  --ring: #38F9D7; /* mint */
 
-  /* charts tuned to new palette */
-  --chart-1: oklch(0.78 0.18 215); /* cyan */
-  --chart-2: oklch(0.72 0.16 260); /* indigo */
-  --chart-3: oklch(0.7 0.15 190);  /* teal */
-  --chart-4: oklch(0.82 0.16 70);  /* amber */
-  --chart-5: oklch(0.84 0.16 30);  /* orange */
+  /* charts tuned to palette */
+  --chart-1: #38F9D7; /* mint */
+  --chart-2: #43E97B; /* emerald */
+  --chart-3: #2C5364; /* deep teal */
+  --chart-4: #14FFEC; /* aqua */
+  --chart-5: #1B9AAA; /* cyan teal */
 
-  --sidebar: oklch(0.12 0.03 255 / 0.92);
-  --sidebar-foreground: oklch(0.98 0.02 260);
-  --sidebar-primary: oklch(0.78 0.18 215);
-  --sidebar-primary-foreground: oklch(0.1 0.03 255);
-  --sidebar-accent: oklch(0.18 0.03 255);
-  --sidebar-accent-foreground: oklch(0.96 0.02 260);
-  --sidebar-border: oklch(0.25 0.02 255 / 0.35);
-  --sidebar-ring: oklch(0.78 0.18 215);
+  --sidebar: #0F2027F2;
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: #14343C;
+  --sidebar-accent-foreground: #E7FFFB;
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 .dark {
-  --background: oklch(0.09 0.03 255);
+  --background: #0F2027;
   --foreground: oklch(0.98 0.02 260);
 
-  --card: oklch(0.11 0.03 255 / 0.88);
-  --card-foreground: oklch(0.98 0.02 260);
-  --popover: oklch(0.11 0.03 255 / 0.94);
-  --popover-foreground: oklch(0.98 0.02 260);
+  --card: #10262cE0;
+  --card-foreground: var(--foreground);
+  --popover: #0f2127F2;
+  --popover-foreground: var(--foreground);
 
-  --primary: oklch(0.8 0.18 215);
-  --primary-foreground: oklch(0.1 0.03 255);
+  --primary: #2C5364;
+  --primary-foreground: #0F2027;
 
-  --secondary: oklch(0.16 0.03 255);
-  --secondary-foreground: oklch(0.96 0.02 260);
+  --secondary: #16343D;
+  --secondary-foreground: #E7FFFB;
 
-  --muted: oklch(0.14 0.03 255);
-  --muted-foreground: oklch(0.68 0.04 255);
+  --muted: #11272E;
+  --muted-foreground: #88C9C0;
 
-  --accent: oklch(0.2 0.05 265);
-  --accent-foreground: oklch(0.98 0.02 260);
+  --accent: #14FFEC;
+  --accent-foreground: #052024;
 
-  --destructive: oklch(0.7 0.22 25);
+  --destructive: #A83D3D;
 
-  --border: oklch(0.22 0.02 255 / 0.35);
-  --input: oklch(0.14 0.03 255 / 0.5);
-  --ring: oklch(0.8 0.18 215);
+  --border: #2a4650;
+  --input: #12303880;
+  --ring: #38F9D7;
 
-  --chart-1: oklch(0.8 0.18 215);
-  --chart-2: oklch(0.75 0.16 260);
-  --chart-3: oklch(0.72 0.15 190);
-  --chart-4: oklch(0.84 0.16 70);
-  --chart-5: oklch(0.86 0.16 30);
+  --chart-1: #38F9D7;
+  --chart-2: #43E97B;
+  --chart-3: #2C5364;
+  --chart-4: #14FFEC;
+  --chart-5: #1B9AAA;
 
-  --sidebar: oklch(0.1 0.03 255 / 0.92);
-  --sidebar-foreground: oklch(0.98 0.02 260);
-  --sidebar-primary: oklch(0.8 0.18 215);
-  --sidebar-primary-foreground: oklch(0.1 0.03 255);
-  --sidebar-accent: oklch(0.16 0.03 255);
-  --sidebar-accent-foreground: oklch(0.96 0.02 260);
-  --sidebar-border: oklch(0.22 0.02 255 / 0.35);
-  --sidebar-ring: oklch(0.8 0.18 215);
+  --sidebar: #0F2027F2;
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: #14343C;
+  --sidebar-accent-foreground: #E7FFFB;
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @layer base {
@@ -139,6 +138,13 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Typography overrides */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+  p, .prose p, li, span, input, textarea, select, button {
+    font-family: "Times New Roman", Times, serif;
   }
   button:not([disabled]),
   [role="button"]:not([disabled]) {
@@ -156,22 +162,23 @@
   }
   
   ::-webkit-scrollbar-track {
-    background: oklch(0.1 0.04 270 / 0.3);
+    background: #12303880;
   }
   
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.7 0.25 320 / 0.6);
+    background: #2C5364CC;
     border-radius: 4px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.7 0.25 320 / 0.8);
+    background: #2C5364;
   }
   
   /* Line clamp utility */
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -208,12 +215,12 @@
 /* Backdrop blur fallback */
 @supports not (backdrop-filter: blur(12px)) {
   .backdrop-blur-sm {
-    background-color: oklch(0.08 0.03 270 / 0.8);
+    background-color: #0F2027CC;
   }
   .backdrop-blur-md {
-    background-color: oklch(0.08 0.03 270 / 0.9);
+    background-color: #0F2027E6;
   }
   .backdrop-blur-3xl {
-    background-color: oklch(0.08 0.03 270 / 0.95);
+    background-color: #0F2027F2;
   }
 }

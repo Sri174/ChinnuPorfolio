@@ -23,19 +23,27 @@ import {
   X,
   FileDown,
   Briefcase,
-  Award
+  Award,
+  Maximize2,
+  Printer
 } from "lucide-react";
 import { toast } from "sonner";
-import {
+import { 
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Particles from "@/components/Particles.tsx";
-import { api } from "@/convex/_generated/api";
-import { useAction } from "convex/react";
+// Offline/no-backend: stub out contact action
 
 interface Project {
   id: string;
@@ -70,7 +78,7 @@ interface Certification {
 
 const profile = {
   name: "VEERACHINNU M",
-  title: "AI & Data Science Student • COO & Technical Mentor",
+  title: "AI & Data Science Student • COO & Fullstack Developer",
   email: "veerachinnumanikandan1@gmail.com",
   phone: "+91 9159573303",
   location: "India",
@@ -78,7 +86,13 @@ const profile = {
   linkedinUrl: "https://www.linkedin.com/in/veerachinnu-manikandan-19a75826b/",
   twitterUrl: "https://twitter.com/",
   resumeUrl: "https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1",
-  imageUrl: "https://ui-avatars.com/api/?name=VEERACHINNU+M&background=ff0080&color=ffffff&size=200"
+  imageUrl: "/profile.jpg"
+};
+
+const company = {
+  name: "Skill Satron Technologies Pvt. Ltd.",
+  url: "https://www.skillsatrontecnologies.com",
+  logoPath: "/skillsatron-logo.png" // Place the provided logo image under public/ with this name
 };
 
 const projects: Project[] = [
@@ -228,6 +242,7 @@ export default function Portfolio() {
   });
 
   const [bgOffset, setBgOffset] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const xNorm = e.clientX / window.innerWidth - 0.5;
@@ -237,7 +252,11 @@ export default function Portfolio() {
     setBgOffset({ x, y });
   };
 
-  const sendContact = useAction(api.contact_actions.sendEmailAndSave);
+  const sendContact = async (_: { name: string; email: string; message: string }) => {
+    // Simulate success without a backend
+    await new Promise((r) => setTimeout(r, 300));
+    return { success: true } as const;
+  };
 
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
   const filteredProjects = selectedCategory === "All" 
@@ -246,7 +265,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "about", "experience", "projects", "resume", "skills", "certifications", "contact"];
+      const sections = ["hero", "about", "leadership", "experience", "projects", "resume", "skills", "certifications", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -290,10 +309,19 @@ export default function Portfolio() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden"
+ <div
+      className="min-h-screen bg-gradient-to-br from-[#0F2027] via-[#12343f] to-[#1b3a45] relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
+      {/* Background Video Layer */}
+      <video
+        className="fixed inset-0 -z-30 w-full h-full object-cover"
+        src="/bg.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
       {/* Robot background with parallax */}
       <div
         className="fixed inset-0 -z-20"
@@ -309,13 +337,13 @@ export default function Portfolio() {
       <div className="fixed inset-0">
         {/* Animated gradient base */}
         <motion.div
-          className="absolute inset-0 opacity-45"
+          className="absolute inset-0 opacity-25"
           animate={{
             background: [
-              "linear-gradient(45deg, #06b6d4, #8b5cf6, #ec4899)",
-              "linear-gradient(135deg, #22d3ee, #a78bfa, #f472b6)",
-              "linear-gradient(225deg, #67e8f9, #818cf8, #fb7185)",
-              "linear-gradient(315deg, #06b6d4, #8b5cf6, #ec4899)",
+              "linear-gradient(45deg, #2C5364, #0F2027, #43E97B)",
+              "linear-gradient(135deg, #12343f, #2C5364, #14FFEC)",
+              "linear-gradient(225deg, #0F2027, #1b3a45, #38F9D7)",
+              "linear-gradient(315deg, #2C5364, #0F2027, #43E97B)",
             ],
           }}
           transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
@@ -325,10 +353,10 @@ export default function Portfolio() {
 
         {/* Subtle neon grid overlay */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-25 mix-blend-screen"
+          className="absolute inset-0 pointer-events-none opacity-15 mix-blend-screen"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(168,85,247,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px)",
+              "linear-gradient(rgba(56,249,215,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(20,255,236,0.12) 1px, transparent 1px)",
             backgroundSize: "60px 60px, 60px 60px",
             backgroundPosition: "0 0, 0 0",
           }}
@@ -336,48 +364,57 @@ export default function Portfolio() {
 
         {/* Radial neural glow hotspots */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-35"
+          className="absolute inset-0 pointer-events-none opacity-20"
           style={{
             backgroundImage:
-              "radial-gradient(600px 300px at 10% 20%, rgba(34,211,238,0.25), transparent 60%), radial-gradient(500px 250px at 80% 30%, rgba(168,85,247,0.25), transparent 60%), radial-gradient(700px 350px at 30% 80%, rgba(236,72,153,0.22), transparent 60%)",
+              "radial-gradient(600px 300px at 10% 20%, rgba(44,83,100,0.22), transparent 60%), radial-gradient(500px 250px at 80% 30%, rgba(56,249,215,0.22), transparent 60%), radial-gradient(700px 350px at 30% 80%, rgba(67,233,123,0.2), transparent 60%)",
           }}
         />
       </div>
 
       {/* AI Particles layers */}
-      <Particles className="opacity-20" density={0.035} color="236, 72, 153" linkDistance={100} maxSpeed={0.18} />
-      <Particles className="opacity-20" density={0.035} color="236, 72, 153" linkDistance={100} maxSpeed={0.18} />
+      <Particles className="opacity-15" density={0.03} color="56, 249, 215" linkDistance={100} maxSpeed={0.14} />
+      <Particles className="opacity-10" density={0.02} color="67, 233, 123" linkDistance={100} maxSpeed={0.12} />
 
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-50"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="grid grid-cols-3 items-center py-4">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent"
+              className="relative rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-8 py-2 shadow-[0_2px_16px_0_rgba(34,197,235,0.10)] h-12"
+              style={{ minWidth: 'fit-content', justifySelf: 'start' }}
             >
-              Portfolio
+              <span className="text-2xl font-bold bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(56,249,215,0.25)]">
+                Veerachinnu Manikandan
+              </span>
             </motion.div>
-            <div className="hidden md:flex space-x-8">
-              {["hero", "about", "experience", "projects", "resume", "skills", "certifications", "contact"].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className={`capitalize transition-colors ${
-                    activeSection === section
-                      ? "text-pink-400"
-                      : "text-white/80 hover:text-white"
-                  }`}
-                >
-                  {section === "hero" ? "Home" : section}
-                </button>
-              ))}
+            <div className="hidden md:flex items-center justify-self-center">
+              <div className="relative rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-2 py-2 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                <div className="pointer-events-none absolute inset-0 rounded-full" style={{
+                  background: "radial-gradient(120px 40px at 50% 120%, rgba(56,249,215,0.25), transparent 60%)"
+                }} />
+                <div className="relative flex items-center gap-2">
+                  {["hero", "about", "projects", "skills", "contact"].map((section) => (
+                    <button
+                      key={section}
+                      onClick={() => scrollToSection(section)}
+                      className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
+                        activeSection === section
+                          ? "bg-white/20 text-white font-semibold"
+                          : "text-white/80 hover:text-white"
+                      }`}
+                    >
+                      {section === "hero" ? "Home" : section.charAt(0).toUpperCase() + section.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3 justify-self-end">
               <a
                 href={profile.githubUrl}
                 target="_blank"
@@ -402,7 +439,7 @@ export default function Portfolio() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="hero" className="min-h-[85vh] flex items-center justify-center relative">
+      <section id="hero" className="min-h-[90vh] flex items-center justify-center relative pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -410,24 +447,29 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
           >
             <motion.div
-              className="w-32 h-32 mx-auto mb-8 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 p-1"
+              className="w-56 h-56 mx-auto mb-8 rounded-full bg-gradient-to-r from-[#14FFEC] to-[#43E97B] p-1"
               whileHover={{ scale: 1.1 }}
             >
               <div className="w-full h-full rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
                 <img
                   src={profile.imageUrl}
                   alt="Profile"
-                  className="w-28 h-28 rounded-full object-cover"
+                  className="w-52 h-52 rounded-full object-cover object-top"
                 />
               </div>
             </motion.div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] via-[#38F9D7] to-[#43E97B] bg-clip-text text-transparent">
               {profile.name}
             </h1>
             <div className="flex flex-wrap gap-2 justify-center mb-6">
-              <Badge className="bg-cyan-500/20 text-cyan-200 border-cyan-400/30">AI & Data Science</Badge>
-              <Badge className="bg-indigo-500/20 text-indigo-200 border-indigo-400/30">Full‑Stack</Badge>
-              <Badge className="bg-pink-500/20 text-pink-200 border-pink-400/30">Design</Badge>
+              <Badge className="bg-[#14FFEC]/20 text-[#14FFEC] border-[#14FFEC]/30">AI & Data Science</Badge>
+              <Badge className="bg-[#43E97B]/20 text-[#43E97B] border-[#43E97B]/30">Full‑Stack</Badge>
+              <Badge className="bg-[#38F9D7]/20 text-[#38F9D7] border-[#38F9D7]/30">Design</Badge>
+              <a href={company.url} target="_blank" rel="noopener noreferrer" className="inline-flex">
+                <Badge className="bg-white/10 border-white/20 text-white hover:bg-white/20 cursor-pointer">
+                  COO @ {company.name}
+                </Badge>
+              </a>
             </div>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
               {profile.title}
@@ -435,14 +477,14 @@ export default function Portfolio() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 onClick={() => scrollToSection("projects")}
-                className="bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600 text-white px-8 py-3 rounded-full"
+                className="bg-gradient-to-r from-[#14FFEC] to-[#43E97B] hover:from-[#10e8d7] hover:to-[#35d66a] text-black px-8 py-3 rounded-full"
               >
                 View My Work
               </Button>
               <Button
                 onClick={() => scrollToSection("contact")}
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-full"
+                className="border-[#38F9D7]/40 text-white hover:bg-[#38F9D7]/10 px-8 py-3 rounded-full"
               >
                 Get In Touch
               </Button>
@@ -455,7 +497,7 @@ export default function Portfolio() {
                 >
                   <Button
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-full"
+                    className="border-[#38F9D7]/40 text-white hover:bg-[#38F9D7]/10 px-8 py-3 rounded-full"
                   >
                     <FileDown className="w-4 h-4 mr-2" />
                     Download Resume
@@ -484,7 +526,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               About Me
             </h2>
             <div className="max-w-4xl mx-auto">
@@ -531,6 +573,94 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Leadership Section */}
+      <section id="leadership" className="py-12 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+              Leadership — COO @ Skill Satron Technologies
+            </h2>
+            <p className="text-lg text-white/80 max-w-3xl mx-auto">
+              Driving product, delivery, and operations for growing tech initiatives.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+            >
+              <div className="flex items-center gap-4">
+                <img
+                  src={company.logoPath}
+                  alt="Skill Satron Logo"
+                  className="w-14 h-14 rounded-md object-contain bg-white/5 p-2"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                />
+                <div>
+                  <a href={company.url} target="_blank" rel="noopener noreferrer" className="text-xl font-semibold text-white hover:text-[#14FFEC]">
+                    {company.name}
+                  </a>
+                  <p className="text-white/60">Chief Operating Officer • Jun 2025 – Present</p>
+                </div>
+              </div>
+              <div className="mt-6 grid sm:grid-cols-2 gap-4">
+                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <p className="text-white/70">
+                    Spearhead product roadmaps and ship features with cross‑functional teams.
+                  </p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <p className="text-white/70">
+                    Optimize delivery processes and stakeholder communication.
+                  </p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                  <p className="text-white/70">
+                    Mentor engineers; champion UI/UX quality and accessibility.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+            >
+              <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-gradient-to-br from-[#14FFEC]/25 to-[#43E97B]/25 blur-2xl" />
+              <h3 className="text-2xl font-semibold text-white mb-4">Focus Areas</h3>
+              <ul className="space-y-3 text-white/80 list-disc pl-6">
+                <li>Product strategy, release management, and quality gates</li>
+                <li>Operations, reporting, and process automation</li>
+                <li>Client communication, demos, and onboarding</li>
+              </ul>
+              <a
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex mt-6"
+              >
+                <Button className="bg-gradient-to-r from-[#14FFEC] to-[#43E97B] text-black rounded-full px-6">
+                  Visit Company Site
+                </Button>
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section id="experience" className="py-12 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -541,7 +671,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Work Experience
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -561,12 +691,20 @@ export default function Portfolio() {
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 flex items-center justify-center">
-                      <Briefcase className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#14FFEC] to-[#43E97B] flex items-center justify-center">
+                      <Briefcase className="w-5 h-5 text-black" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-white">{exp.role}</h3>
-                      <p className="text-white/70">{exp.company}</p>
+                      {exp.company.includes("Skill Satron") ? (
+                        <a href={company.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-white">
+                          {/* logo shown if present in /public */}
+                          <img src={company.logoPath} alt="Skill Satron Logo" className="w-5 h-5 rounded-sm object-contain" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+                          <span>{company.name}</span>
+                        </a>
+                      ) : (
+                        <p className="text-white/70">{exp.company}</p>
+                      )}
                     </div>
                   </div>
                   <span className="text-sm text-white/60">{exp.period}</span>
@@ -589,7 +727,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Featured Projects
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -623,7 +761,7 @@ export default function Portfolio() {
                             setIsFilterOpen(false);
                           }}
                           className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
-                            selectedCategory === category ? "bg-white/20 text-pink-400" : "text-white"
+                            selectedCategory === category ? "bg-white/20 text-[#14FFEC]" : "text-white"
                           }`}
                         >
                           {category}
@@ -696,68 +834,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Resume Section */}
-      <section id="resume" className="py-12 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
-              Resume
-            </h2>
-            <p className="text-lg text-white/80">
-              Browse highlights and download the full resume.
-            </p>
-          </motion.div>
-
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-4">
-            <div className="relative">
-              <Carousel className="w-full">
-                <CarouselContent>
-                  <CarouselItem className="basis-full">
-                    <motion.img
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      src="https://harmless-tapir-303.convex.cloud/api/storage/0fb2810a-a7a7-462e-85e5-4e46021a4510"
-                      alt="Resume page 2"
-                      className="w-full rounded-lg object-contain max-h-[70vh]"
-                    />
-                  </CarouselItem>
-                  <CarouselItem className="basis-full">
-                    <motion.img
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      src="https://harmless-tapir-303.convex.cloud/api/storage/25d81795-4181-4a2d-801d-53676f028aa1"
-                      alt="Resume page 1"
-                      className="w-full rounded-lg object-contain max-h-[70vh]"
-                    />
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
-              </Carousel>
-            </div>
-
-            <div className="flex justify-center mt-6">
-              <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex">
-                <Button
-                  variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 px-6 rounded-full"
-                >
-                  <FileDown className="w-4 h-4 mr-2" />
-                  Download Resume
-                </Button>
-              </a>
-            </div>
-          </Card>
-        </div>
-      </section>
+      
 
       {/* Skills Section */}
       <section id="skills" className="py-12 relative">
@@ -769,7 +846,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -789,7 +866,7 @@ export default function Portfolio() {
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
               >
                 <div className="flex items-center mb-4">
-                  <div className="text-pink-400 mr-3">{skill.icon}</div>
+                  <div className="text-cyan-400 mr-3">{skill.icon}</div>
                   <h3 className="text-lg font-semibold text-white">{skill.name}</h3>
                 </div>
                 <div className="mb-2">
@@ -799,7 +876,7 @@ export default function Portfolio() {
                   </div>
                   <div className="w-full bg-white/20 rounded-full h-2">
                     <motion.div
-                      className="bg-gradient-to-r from-pink-500 to-blue-500 h-2 rounded-full"
+                      className="bg-gradient-to-r from-[#14FFEC] to-[#43E97B] h-2 rounded-full"
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: index * 0.1 }}
@@ -823,7 +900,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Certifications
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -843,12 +920,12 @@ export default function Portfolio() {
                 className="group relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_0_1px_rgba(34,197,235,0.25)]"
               >
                 {/* subtle gradient glow */}
-                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gradient-to-br from-cyan-500/25 to-indigo-500/25 blur-2xl" />
+                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gradient-to-br from-[#14FFEC]/25 to-[#43E97B]/25 blur-2xl" />
 
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 flex items-center justify-center">
-                      <Award className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#14FFEC] to-[#43E97B] flex items-center justify-center">
+                      <Award className="w-5 h-5 text-black" />
                     </div>
                     <div>
                       <h3 className="text-base font-semibold text-white">{c.title}</h3>
@@ -862,7 +939,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* animated accent underline */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-cyan-500 to-indigo-500 transition-all duration-500 group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] transition-all duration-500 group-hover:w-full" />
               </motion.div>
             ))}
           </div>
@@ -870,7 +947,7 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="pt-6 pb-12 relative">
+      <section id="contact" className="pt-20 md:pt-28 pb-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -879,10 +956,10 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent leading-tight">
               Let's Work Together
             </h2>
-            <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-3xl mx-auto px-2">
               Have a project in mind? I'd love to hear about it. Let's create something amazing together.
             </p>
           </motion.div>
@@ -927,7 +1004,7 @@ export default function Portfolio() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-cyan-500 to-indigo-500 hover:from-cyan-600 hover:to-indigo-600 text-white py-3"
+                    className="w-full bg-gradient-to-r from-[#14FFEC] to-[#43E97B] hover:from-[#10e8d7] hover:to-[#35d66a] text-black py-3"
                   >
                     Send Message
                   </Button>

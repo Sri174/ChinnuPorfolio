@@ -11,7 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@convex-dev/auth": "^0.0.86",
     "@faker-js/faker": "^9.8.0",
     "@hookform/resolvers": "^5.0.1",
     "@jridgewell/trace-mapping": "^0.3.25",
@@ -46,12 +45,10 @@
     "@tailwindcss/vite": "^4.1.8",
     "@types/three": "^0.177.0",
     "@zumer/snapdom": "^1.7.1",
-    "axios": "^1.9.0",
+    "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "convex": "^1.27.0",
-    "crud": "link:convex-helpers/server/crud",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.15.0",
@@ -60,9 +57,9 @@
     "lucide-react": "^0.511.0",
     "next-themes": "^0.4.6",
     "oslo": "^1.2.1",
-    "react": "^19.1.0",
+    "react": "^19.1.1",
     "react-day-picker": "9.8.1",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.1.1",
     "react-hook-form": "^7.57.0",
     "react-intersection-observer": "^9.16.0",
     "react-resizable-panels": "^3.0.2",
@@ -77,9 +74,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@types/node": "^22.15.29",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/node": "^22.18.4",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-config-prettier": "^10.1.5",
@@ -91,5 +88,18 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5"
-  }
+  },
+  "description": "This project uses the following tech stack:\r - Vite\r - Typescript\r - React Router v7 (all imports from `react-router` instead of `react-router-dom`)\r - React 19 (for frontend components)\r - Tailwind v4 (for styling)\r - Shadcn UI (for UI components library)\r - Lucide Icons (for icons)\r - Convex (for backend & database)\r - Convex Auth (for authentication)\r - Framer Motion (for animations)\r - Three js (for 3d models)",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sri174/Chinnu_Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sri174/Chinnu_Portfolio/issues"
+  },
+  "homepage": "https://github.com/Sri174/Chinnu_Portfolio#readme"
 }

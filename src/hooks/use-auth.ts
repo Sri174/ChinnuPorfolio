@@ -1,29 +1,72 @@
-import { api } from "@/convex/_generated/api";
-import { useAuthActions } from "@convex-dev/auth/react";
-import { useConvexAuth, useQuery } from "convex/react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import { useEffect, useState } from "react";
+const BACKEND_URL = "http://localhost:3001/api/auth"; // Your Node.js backend URL
 
 export function useAuth() {
-  const { isLoading: isAuthLoading, isAuthenticated } = useConvexAuth();
-  const user = useQuery(api.users.currentUser);
-  const { signIn, signOut } = useAuthActions();
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<{ token: string } | null>(null);
 
-  // This effect updates the loading state once auth is loaded and user data is available
-  // It ensures we only show content when both authentication state and user data are ready
   useEffect(() => {
-    if (!isAuthLoading && user !== undefined) {
+    // Check for existing token in localStorage or sessionStorage
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      // In a real app, you'd verify this token with your backend
+      setIsAuthenticated(true);
+      setUser({ token });
+    }
+    setIsLoading(false);
+  }, []);
+
+  const signIn = async (type: "email-otp" | "anonymous", data?: FormData) => {
+    setIsLoading(true);
+    try {
+      if (type === "email-otp") {
+        const email = data?.get("email") as string;
+        const code = data?.get("code") as string;
+
+        if (email && !code) {
+          // Step 1: Request OTP
+          await axios.post(`${BACKEND_URL}/email-otp`, { email });
+          // Frontend will handle setting step to OTP verification
+        } else if (email && code) {
+          // Step 2: Verify OTP
+          const response = await axios.post(`${BACKEND_URL}/email-otp/verify`, { email, code });
+          const { token } = response.data;
+          localStorage.setItem("authToken", token);
+          setIsAuthenticated(true);
+          setUser({ token });
+        }
+      } else if (type === "anonymous") {
+        const response = await axios.post(`${BACKEND_URL}/anonymous`);
+        const { token } = response.data;
+        localStorage.setItem("authToken", token);
+        setIsAuthenticated(true);
+        setUser({ token });
+      }
+    } catch (error) {
+      console.error("Sign-in error:", error);
+      setIsAuthenticated(false);
+      setUser(null);
+      throw error; // Re-throw to be caught by the component
+    } finally {
       setIsLoading(false);
     }
-  }, [isAuthLoading, user]);
-
-  return {
-    isLoading,
-    isAuthenticated,
-    user,
-    signIn,
-    signOut,
   };
+
+  const signOut = async () => {
+    setIsLoading(true);
+    try {
+      localStorage.removeItem("authToken");
+      setIsAuthenticated(false);
+      setUser(null);
+    } catch (error) {
+      console.error("Sign-out error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { isLoading, isAuthenticated, user, signIn, signOut };
 }
