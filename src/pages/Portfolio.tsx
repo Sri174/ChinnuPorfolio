@@ -1,11 +1,12 @@
-import type React from "react";
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import axios from 'axios';
 import { 
   Github, 
   ExternalLink, 
@@ -43,6 +44,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Particles from "@/components/Particles.tsx";
+const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+
 // Offline/no-backend: stub out contact action
 
 interface Project {
@@ -92,7 +95,7 @@ const profile = {
 const company = {
   name: "Skill Satron Technologies Pvt. Ltd.",
   url: "https://www.skillsatrontecnologies.com",
-  logoPath: "/skillsatron-logo.png" // Place the provided logo image under public/ with this name
+  logoPath: "/skillsatron.png" // Place the provided logo image under public/ with this name
 };
 
 const projects: Project[] = [
@@ -114,11 +117,11 @@ const projects: Project[] = [
     description:
       "Web app that generates interior design ideas using generative AI with simple user prompts.",
     image:
-      "https://i.pinimg.com/1200x/4c/46/ad/4c46adde0b8add716f5b20b4d315d0ac.jpg",
+      "/VAII.png",
     technologies: ["Python", "FastAPI", "React", "OpenAI"],
     category: "AI/ML",
     githubUrl: "https://github.com/Sri174/Virtual_AI_Interior",
-    liveUrl: "https://example.com",
+    liveUrl: "https://virtual-ai-interior-design.vercel.app/",
     featured: false,
   },
   {
@@ -127,10 +130,10 @@ const projects: Project[] = [
     description:
       "Responsive, user‑friendly frontend for Z7i website with modern web practices and accessibility.",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=500&fit=crop",
+      "/z7i.png",
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     category: "Web Development",
-    githubUrl: "https://github.com",
+    githubUrl: "https://bitbucket.org/z7i-web/frontend/src/main/",
     liveUrl: "https://z7i.in/",
     featured: false,
   },
@@ -138,11 +141,12 @@ const projects: Project[] = [
     id: "p4",
     title: "Futureself AI",
     description:
-      "Inspires students by visualizing their future selves in dream professions using generative AI. Dual journeys (ages 5–10 and 11–17) with a personality quiz, camera/upload input, and a personalized, shareable result card.",
+      "Inspires students by visualizing their future selves in dream professions using Stable Diffusion xl. Dual journeys (ages 5–10 and 11–17) with a personality quiz, camera/upload input, and a personalized, shareable result card.",
     image:
-      "https://harmless-tapir-303.convex.cloud/api/storage/5a1fb435-76d6-4d84-bf09-3049c6347542",
+      "/futureself.png",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "Genkit", "Stable Diffusion XL"],
     category: "AI/ML",
+    githubUrl: "https://github.com/Chinnu010704/MVAfutureself",
     liveUrl: "https://mvafutureself.netlify.app/",
     featured: false,
   },
@@ -152,11 +156,12 @@ const projects: Project[] = [
     description:
       "Payroll application built with Python (Tkinter) featuring employee management and report generation.",
     image:
-      "https://harmless-tapir-303.convex.cloud/api/storage/1ada4d08-cc99-4777-a0de-0ef7995440c6",
+      "/payroll.png",
     technologies: ["Python", "Tkinter"],
     category: "Software",
-    githubUrl: "https://github.com",
-    featured: false,
+    githubUrl: "https://github.com/thekabi-4/alliswell_payroll",
+    liveUrl: "https://lmsreportgenerator.streamlit.app/",
+    featured: false
   },
   {
     id: "p6",
@@ -164,7 +169,7 @@ const projects: Project[] = [
     description:
       "A complete report generation system for Learning Management Systems (LMS) that ingests Excel files, parses them into SQLite, applies business rules, and outputs payroll-ready analytics. Features include automated calculations, attendance summaries, detailed month-wise breakdowns, and CSV exports. Built with a Streamlit frontend for an intuitive experience.",
     image:
-      "https://harmless-tapir-303.convex.cloud/api/storage/3c9bea19-6a57-4f75-aa2d-57b52406294f",
+      "/Lms.png",
     technologies: [
       "Python",
       "Streamlit",
@@ -174,6 +179,7 @@ const projects: Project[] = [
       "XlsxWriter"
     ],
     category: "Software",
+    githubUrl: "https://github.com/Sri174/LMS_Report_Generator" ,
     liveUrl: "https://lmsreportgenerator.streamlit.app/",
     featured: false,
   },
@@ -183,7 +189,7 @@ const projects: Project[] = [
     description:
       "Interactive frontend for an AI-powered room builder that visualizes design variations and layouts.",
     image:
-      "https://harmless-tapir-303.convex.cloud/api/storage/92725131-7d5b-4667-b5e1-0eb26de107ac",
+      "/dream.png",
     technologies: ["TypeScript", "React", "Tailwind CSS"],
     category: "Web Development",
     githubUrl: "https://github.com/Sri174/dreamscape-room-builder-ai",
@@ -195,13 +201,13 @@ const projects: Project[] = [
 const skills: Skill[] = [
   { name: "Python", level: 85, category: "Backend", icon: <Code className="w-5 h-5" /> },
   { name: "React", level: 80, category: "Frontend", icon: <Code className="w-5 h-5" /> },
-  { name: "UI/UX Design", level: 75, category: "Design", icon: <Palette className="w-5 h-5" /> },
+  { name: "UI/UX Design", level: 85, category: "Design", icon: <Palette className="w-5 h-5" /> },
   { name: "Problem Solving", level: 85, category: "Core", icon: <Globe className="w-5 h-5" /> },
   { name: "Communication", level: 90, category: "Core", icon: <Globe className="w-5 h-5" /> },
   { name: "Frontend", level: 80, category: "Frontend", icon: <Code className="w-5 h-5" /> },
-  { name: "Debugging", level: 78, category: "Core", icon: <Database className="w-5 h-5" /> },
-  { name: "Tableau", level: 65, category: "Data", icon: <Database className="w-5 h-5" /> },
-  { name: "MS Office", level: 88, category: "Productivity", icon: <Globe className="w-5 h-5" /> },
+  { name: "Debugging", level: 85, category: "Core", icon: <Database className="w-5 h-5" /> },
+  { name: "Tableau", level: 90, category: "Data", icon: <Database className="w-5 h-5" /> },
+  { name: "MS Office", level: 93, category: "Productivity", icon: <Globe className="w-5 h-5" /> },
   { name: "Management", level: 82, category: "Leadership", icon: <Globe className="w-5 h-5" /> },
 ];
 
@@ -218,7 +224,7 @@ const experiences: Experience[] = [
     company: "Chronosphere, Burhanpur (Madhya Pradesh)",
     period: "Jul 2025 – Present",
     description:
-      "Completed a 6‑month Technical Internship as Learning Management Engineer; optimized and supported LMS systems; also served as a Full‑Stack Development role intern contributing to frontend and backend web features."
+      "Completed a 6‑month Technical Internship as Full-Stack Developer; optimized and supported LMS systems manager; also served as a Full‑Stack Development role intern contributing to frontend and backend web features."
   },
 ];
 
@@ -231,6 +237,8 @@ const certifications: Certification[] = [
   { title: "Career Essentials in Generative AI", issuer: "Microsoft & LinkedIn" },
 ];
 
+import CertificateModal from "@/components/CertificateModal";
+
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("hero");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -242,7 +250,7 @@ export default function Portfolio() {
   });
 
   const [bgOffset, setBgOffset] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
-  const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [selectedCertification, setSelectedCertification] = useState<Certification | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const xNorm = e.clientX / window.innerWidth - 0.5;
@@ -250,12 +258,6 @@ export default function Portfolio() {
     const x = Math.max(40, Math.min(60, 50 + xNorm * 8));
     const y = Math.max(40, Math.min(60, 50 + yNorm * 6));
     setBgOffset({ x, y });
-  };
-
-  const sendContact = async (_: { name: string; email: string; message: string }) => {
-    // Simulate success without a backend
-    await new Promise((r) => setTimeout(r, 300));
-    return { success: true } as const;
   };
 
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
@@ -291,22 +293,43 @@ export default function Portfolio() {
     }
   };
 
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  type ContactResult =
+  | { success: true; data: any; error?: undefined }
+  | { success: false; error: string; data?: undefined };
+
+  const sendContact = async (data: { name: string; email: string; message: string }): Promise<ContactResult> => {
     try {
-      await sendContact({
-        name: contactForm.name,
-        email: contactForm.email,
-        message: contactForm.message,
-      });
-      toast.success("Message sent! I'll get back to you soon.");
-      setContactForm({ name: "", email: "", message: "" });
-    } catch (err) {
-      toast.error(
-        err instanceof Error ? err.message : "Failed to send message. Please try again."
-      );
+      const response = await axios.post(`${backendUrl}/api/contact`, data);
+      return { success: true, data: response.data };
+    } catch (error: any) {
+      console.error("Contact submission failed:", error);
+      return { success: false, error: error.message };
     }
   };
+
+const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  try {
+    const result = await sendContact({
+      name: contactForm.name,
+      email: contactForm.email,
+      message: contactForm.message,
+    });
+
+    if (result.success) {
+      toast.success("Message sent! I'll get back to you soon.");
+      setContactForm({ name: "", email: "", message: "" });
+    } else {
+      toast.error(
+        result.error || "Failed to send message. Please try again."
+      );
+    }
+  } catch (err) {
+    toast.error(
+      err instanceof Error ? err.message : "Failed to send message. Please try again."
+    );
+  }
+};
 
   return (
  <div
@@ -375,6 +398,7 @@ export default function Portfolio() {
       {/* AI Particles layers */}
       <Particles className="opacity-15" density={0.03} color="56, 249, 215" linkDistance={100} maxSpeed={0.14} />
       <Particles className="opacity-10" density={0.02} color="67, 233, 123" linkDistance={100} maxSpeed={0.12} />
+      <Particles className="opacity-20" density={0.04} color="20, 255, 236" linkDistance={120} maxSpeed={0.16} />
 
       {/* Navigation */}
       <motion.nav
@@ -440,7 +464,7 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section id="hero" className="min-h-[90vh] flex items-center justify-center relative pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-screen-xl mx-auto px-0 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -910,7 +934,7 @@ export default function Portfolio() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((c, idx) => (
-              <motion.div
+              <motion.button
                 key={c.title + c.issuer}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -918,12 +942,13 @@ export default function Portfolio() {
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 viewport={{ once: true }}
                 className="group relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300 hover:border-cyan-400/40 hover:shadow-[0_0_0_1px_rgba(34,197,235,0.25)]"
+                onClick={() => setSelectedCertification(c)}
               >
                 {/* subtle gradient glow */}
                 <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gradient-to-br from-[#14FFEC]/25 to-[#43E97B]/25 blur-2xl" />
 
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center text-center gap-3 h-full">
+                  <div className="flex flex-col items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#14FFEC] to-[#43E97B] flex items-center justify-center">
                       <Award className="w-5 h-5 text-black" />
                     </div>
@@ -933,14 +958,14 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <Badge variant="outline" className="border-white/30 text-white/80">
+                  <Badge variant="outline" className="border-white/30 text-white/80 mt-auto">
                     {c.issuer}
                   </Badge>
                 </div>
 
                 {/* animated accent underline */}
                 <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] transition-all duration-500 group-hover:w-full" />
-              </motion.div>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -1077,8 +1102,8 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="py-8 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-white/60">
-            © {new Date().getFullYear()} {profile.name}. Built with React, TypeScript, and lots of ☕
+          <p className="text-white/100">
+            © {new Date().getFullYear()} {profile.name}. 
           </p>
         </div>
       </footer>

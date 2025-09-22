@@ -44,6 +44,14 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Node.js backend is running!');
 });
 
+app.post('/api/contact', async (req: Request, res: Response) => {
+  const { name, email, message } = req.body;
+  console.log(`Received contact form submission from: ${name} <${email}>`);
+  // In a real application, you would send this data to a database or email service.
+  // For now, we'll just simulate success.
+  res.status(200).json({ message: 'Contact form submitted successfully (simulated)' });
+});
+
 app.listen(port, () => {
   console.log(`Backend server listening at http://localhost:${port}`);
 });
