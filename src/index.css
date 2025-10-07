@@ -1,6 +1,7 @@
-/* DO NOT CHANGE */
+/* Base Imports */
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./styles/animations.css";
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -129,24 +130,21 @@
   --sidebar-accent: #14343C;
   --sidebar-accent-foreground: #E7FFFB;
   --sidebar-border: var(--border);
-  --sidebar-ring: var(--ring);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    -webkit-tap-highlight-color: transparent;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen overflow-x-hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  /* Typography overrides */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: Georgia, "Times New Roman", Times, serif;
-  }
-  p, .prose p, li, span, input, textarea, select, button {
-    font-family: "Times New Roman", Times, serif;
-  }
-  button:not([disabled]),
   [role="button"]:not([disabled]) {
     cursor: pointer;
   }

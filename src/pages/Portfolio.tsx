@@ -26,7 +26,8 @@ import {
   Briefcase,
   Award,
   Maximize2,
-  Printer
+  Printer,
+  Download
 } from "lucide-react";
 import { toast } from "sonner";
 import { 
@@ -44,6 +45,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Particles from "@/components/Particles.tsx";
+import HeroSection from "@/components/HeroSection";
+
 const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 
 // Offline/no-backend: stub out contact action
@@ -238,6 +241,47 @@ const certifications: Certification[] = [
 ];
 
 import CertificateModal from "@/components/CertificateModal";
+
+// Minimal custom Typewriter effect (replace the usage below if you don't want to install the package)
+const Typewriter = ({ words, typeSpeed = 100, deleteSpeed = 50, delaySpeed = 1500, loop = true }: {
+  words: string[];
+  typeSpeed?: number;
+  deleteSpeed?: number;
+  delaySpeed?: number;
+  loop?: boolean;
+}) => {
+  const [index, setIndex] = useState(0);
+  const [displayed, setDisplayed] = useState('');
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const word = words[index % words.length];
+    if (!deleting && displayed.length < word.length) {
+      timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), typeSpeed);
+    } else if (deleting && displayed.length > 0) {
+      timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length - 1)), deleteSpeed);
+    } else if (!deleting && displayed.length === word.length) {
+      timeout = setTimeout(() => setDeleting(true), delaySpeed);
+    } else if (deleting && displayed.length === 0) {
+      setDeleting(false);
+      setIndex((i) => (i + 1) % words.length);
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, deleting, index, words, typeSpeed, deleteSpeed, delaySpeed]);
+
+  return <span>{displayed}<span className="animate-pulse">|</span></span>;
+};
+
+// Minimal ResumePreview component to avoid "Cannot find name 'ResumePreview'"
+const ResumePreview = ({ page1, page2, resumeUrl }: { page1: string; page2: string; resumeUrl: string }) => (
+  <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+    <Button variant="outline" className="border-[#38F9D7]/40 text-white hover:bg-[#38F9D7]/10 px-8 py-3 rounded-full">
+      <Download className="w-4 h-4 mr-2" />
+      Download Resume
+    </Button>
+  </a>
+);
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -482,9 +526,20 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 />
               </div>
             </motion.div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] via-[#38F9D7] to-[#43E97B] bg-clip-text text-transparent">
+            <h1 className="text-6xl md:text-8xl font-bold font-[Georgia,serif] bg-gradient-to-r from-[#14FFEC] via-[#38F9D7] to-[#43E97B] bg-clip-text text-transparent">
               {profile.name}
             </h1>
+            <div className="h-16 flex items-center justify-center my-2">
+              <span className="text-1xl md:text-2xl font-[Georgia,serif] bg-gradient-to-r from-[#14FFEC] via-[#38F9D7] to-[#43E97B] bg-clip-text text-transparent">
+                <Typewriter 
+                  words={['FULL STACK DEVELOPER', 'AI ENTHUSIAST']} 
+                  typeSpeed={100}
+                  deleteSpeed={50}
+                  delaySpeed={1500}
+                  loop={true}
+                />
+              </span>
+            </div>
             <div className="flex flex-wrap gap-2 justify-center mb-6">
               <Badge className="bg-[#14FFEC]/20 text-[#14FFEC] border-[#14FFEC]/30">AI & Data Science</Badge>
               <Badge className="bg-[#43E97B]/20 text-[#43E97B] border-[#43E97B]/30">Full‑Stack</Badge>
@@ -513,20 +568,11 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 Get In Touch
               </Button>
               {profile.resumeUrl && (
-                <a
-                  href={profile.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex"
-                >
-                  <Button
-                    variant="outline"
-                    className="border-[#38F9D7]/40 text-white hover:bg-[#38F9D7]/10 px-8 py-3 rounded-full"
-                  >
-                    <FileDown className="w-4 h-4 mr-2" />
-                    Download Resume
-                  </Button>
-                </a>
+                <ResumePreview 
+                  page1="/resume/page1.jpg" 
+                  page2="/resume/page2.jpg" 
+                  resumeUrl={profile.resumeUrl} 
+                />
               )}
             </div>
           </motion.div>
@@ -550,7 +596,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               About Me
             </h2>
             <div className="max-w-4xl mx-auto">
@@ -607,7 +653,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Leadership — COO @ Skill Satron Technologies
             </h2>
             <p className="text-lg text-white/80 max-w-3xl mx-auto">
@@ -695,7 +741,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Work Experience
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -751,7 +797,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Featured Projects
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -870,7 +916,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -924,7 +970,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-7xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent">
               Certifications
             </h2>
             <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
@@ -981,7 +1027,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent leading-tight">
+            <h2 className="text-5xl md:text-8xl font-bold font-[Georgia,serif] mb-6 bg-gradient-to-r from-[#14FFEC] to-[#43E97B] bg-clip-text text-transparent leading-tight">
               Let's Work Together
             </h2>
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-3xl mx-auto px-2">
@@ -1045,7 +1091,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               className="space-y-8"
             >
               <div>
-                <h3 className="text-2xl font-semibold text-white mb-6">Get In Touch</h3>
+                <h3 className="text-3xl font-semibold font-[Georgia,serif] text-white mb-6">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <Mail className="w-6 h-6 text-cyan-400 mr-4" />
@@ -1063,7 +1109,7 @@ const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold text-white mb-6">Follow Me</h3>
+                <h3 className="text-3xl font-semibold font-[Georgia,serif] text-white mb-6">Follow Me</h3>
                 <div className="flex space-x-4">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
