@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import axios from 'axios';
+import emailjs from '@emailjs/browser';
 import { 
   Github, 
   ExternalLink, 
@@ -343,11 +343,56 @@ export default function Portfolio() {
 
   const sendContact = async (data: { name: string; email: string; message: string }): Promise<ContactResult> => {
     try {
-      const response = await axios.post(`${backendUrl}/api/contact`, data);
-      return { success: true, data: response.data };
+      // Check if emailjs is properly configured
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      
+      if (publicKey && serviceId && templateId && publicKey !== 'your_public_key_here' && serviceId !== 'your_service_id_here' && templateId !== 'your_template_id_here') {
+        // EmailJS is configured, try to send using it
+        try {
+          // Initialize emailjs with your public key
+          emailjs.init(publicKey);
+          
+          // Send email using emailjs
+          const response = await emailjs.send(
+            serviceId,  // Service ID
+            templateId, // Template ID
+            {
+              from_name: data.name,
+              from_email: data.email,
+              message: data.message,
+              to_name: 'Veerachinnu', // Your name
+            }
+          );
+
+          return { success: true, data: response };
+        } catch (emailjsError: any) {
+          console.error("EmailJS failed:", emailjsError);
+          console.log("Falling back to backend API...");
+        }
+      } else {
+        console.log("EmailJS not configured, using backend API...");
+      }
+      
+      // Fallback to backend API
+      const response = await fetch(`${backendUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Backend API failed: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      return { success: true, data: result };
     } catch (error: any) {
       console.error("Contact submission failed:", error);
-      return { success: false, error: error.message };
+      return { success: false, error: error.message || 'Failed to send message' };
     }
   };
 
