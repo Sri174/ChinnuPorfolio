@@ -115,19 +115,6 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: "p2",
-    title: "Virtual AI Interior",
-    description:
-      "Web app that generates interior design ideas using generative AI with simple user prompts.",
-    image:
-      "/VAII.png",
-    technologies: ["Python", "FastAPI", "React", "OpenAI"],
-    category: "AI/ML",
-    githubUrl: "https://github.com/Sri174/Virtual_AI_Interior",
-    liveUrl: "https://virtual-ai-interior-design.vercel.app/",
-    featured: false,
-  },
-  {
     id: "p3",
     title: "Z7i Website Frontend",
     description:
@@ -184,19 +171,6 @@ const projects: Project[] = [
     category: "Software",
     githubUrl: "https://github.com/Sri174/LMS_Report_Generator" ,
     liveUrl: "https://lmsreportgenerator.streamlit.app/",
-    featured: false,
-  },
-  {
-    id: "p7",
-    title: "Dreamscape Room Builder AI (Frontend)",
-    description:
-      "Interactive frontend for an AI-powered room builder that visualizes design variations and layouts.",
-    image:
-      "/dream.png",
-    technologies: ["TypeScript", "React", "Tailwind CSS"],
-    category: "Web Development",
-    githubUrl: "https://github.com/Sri174/dreamscape-room-builder-ai",
-    liveUrl: "https://dreamscape-room-builder-ai-rn7y.vercel.app/",
     featured: false,
   },
 ];
